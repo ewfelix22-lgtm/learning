@@ -1,0 +1,10 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TestProject1/x64/Debug
+/TestProject1/TestProject1/x64/Debug
+/TestProject1/.vs
+/.vs/learning/CopilotIndices/18.3.508.13148
+/.vs/learning.slnx/v18
+/.vs
