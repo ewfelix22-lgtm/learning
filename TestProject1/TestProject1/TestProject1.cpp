@@ -2,7 +2,7 @@
 //
 
 #include <iostream>
-
+#include namespace std;
 int main()
 {
     std::cout << "Hello World!\n";
