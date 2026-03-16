@@ -8,7 +8,7 @@ double result;
 string equation;
 double number_two;
 bool decider = true;
-
+double saver;
 bool repeater() {
     
     if (number == "exit") {
@@ -45,65 +45,84 @@ bool parseSpecInt() {
 }
 
 
+int repeated = 0;
+double numb2saver;
 
 
 
 
+int main() {
+    bool continueing = false;
+    string safety = "none";
+    while (true) {
+
+        if (!(cin >> number)) {
+            // no more input
+            return 0;
+        }
 
 
-    int main() {
-       
-        string safety = "none";
-        while (true) {
-            if (!(cin >> number)) {
-                // no more input
-                return 0;
-            }
-            
-             if (!repeater()) {
-                return 0;
-            }
-             else if (number != "none") {
-                
-                // parse the first token (number)
+
+        if (number == "continue") {
+            continueing = true;
+            continue;
+        }
+        if (!repeater()) {
+            return 0;
+        }
+        else if (number != "none") {
+
+            // parse the first token (number)
+            if (repeated == 0 || continueing == false) {
+
                 parseSpecInt();
+            }
 
-                // read the rest of the current input line only, so we process one user input at a time
-                string restOfLine;
-                getline(cin, restOfLine); // reads until end of line
+            // read the rest of the current input line only, so we process one user input at a time
 
-                if (!restOfLine.empty()) {
-                    stringstream ss(restOfLine);
-                    // parse operator and operand pairs from the rest of this line only
-                    while (ss >> equation >> number_two) {
-                        if (equation == "*") {
-                            result = result * number_two;
-                        }
-                        else if (equation == "+") {
-                            result = result + number_two;
-                        }
-                        else if (equation == "-") {
-                            result = result - number_two;
-                        }
-                        else if (equation == "/") {
-                            if (number_two != 0) {
-                                result = result / number_two;
-                            }
-                            else {
-                                cout << "Error: division by zero" << endl;
-                                break;
 
-                            }
+            string restOfLine;
+            getline(cin, restOfLine); // reads until end of line
+
+            if (!restOfLine.empty()) {
+                stringstream ss(restOfLine);
+                // parse operator and operand pairs from the rest of this line only
+                while (ss >> equation >> number_two) {
+
+                    if (equation == "*") {
+                        result = result * number_two;
+                    }
+                    else if (equation == "+") {
+                        result = result + number_two;
+                    }
+                    else if (equation == "-") {
+                        result = result - number_two;
+                    }
+                    else if (equation == "/") {
+                        if (number_two != 0) {
+                            result = result / number_two;
+                        }
+                        else {
+                            cout << "Error: division by zero" << endl;
+                            break;
+
                         }
                     }
                 }
-                
-                // Print the final result once for this user input (line)
-                cout << result << "\n";
             }
-             
+
+
+            // Print the final result once for this user input (line)
+
+            saver = result;
+            repeated = 1;
+            cout << result << "\n";
+           
+
         }
-    
+
+    }
+
 }
     /*
         Run program: Ctrl + F5 or Debug > Start Without Debugging menu
